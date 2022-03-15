@@ -1,7 +1,7 @@
 leetcode junit
 
 #tempFilePath
-D:\dsAlgo\leedcode_junit\src\main\java
+D:\xxxxxxx\leetcode_junit\src\main\java
 
 #codeFileName
 P${question.frontendQuestionId}_$!velocityTool.camelCaseName(${question.title})
