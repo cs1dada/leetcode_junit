@@ -22,3 +22,7 @@ package leetcode.editor.en;
       ${question.code}
       
   }
+
+#設定 
+ 
+![img.png](img.png)
