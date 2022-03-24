@@ -17,13 +17,15 @@ class P844_BackspaceStringCompareTest {
     void backspaceCompare() {
         String s = "ab#c";
         String t = "ad#c";
-
-//        assertEquals(true,
-//                solution.backspaceCompare(s,t));
+        assertEquals(true,
+                solution.backspaceCompare(s,t));
         assertEquals(true,
                 solution.backspaceCompare("ab##","c#d#"));
         assertEquals(false,
                 solution.backspaceCompare("a#c","b"));
+
+        assertEquals(true,
+                solution.backspaceCompare("a##c","#a#c"));
 
 
     }
