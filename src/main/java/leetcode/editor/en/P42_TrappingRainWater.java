@@ -12,6 +12,11 @@ public class P42_TrappingRainWater {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         *  min(maxLeft,maxRight)-height
+         * @param height
+         * @return
+         */
         public int trap(int[] height) {
 
             int left = 0;
