@@ -16,7 +16,77 @@ public class P844_BackspaceStringCompare {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        /**
+         * 雙指標法
+         * 從後面往前走, 如果遇到#之後的字要忽略掉
+         * 直到確定這個字, 是最後留下的字
+         * 比較s和t
+         *
+         * @param s
+         * @param t
+         * @return
+         */
         public boolean backspaceCompare(String s, String t) {
+            int sPtr = s.length() - 1;
+            int tPtr = t.length() - 1;
+            char[] sChar = s.toCharArray();
+            char[] tChar = t.toCharArray();
+            int sIgnore = 0;
+            int tIgnore = 0;
+
+
+            while (sPtr > 0 && tPtr > 0) {
+                //s
+                while (sPtr >= 0) {
+                    if (sChar[sPtr] == '#') {
+                        //此字元是#
+                        sIgnore++;
+                        sPtr--;
+                    } else if (sIgnore > 0) {
+                        //此字元被#抵銷
+                        sIgnore--;
+                        sPtr--;
+                    } else {
+                        //sIgnore == 0 && sChar[sPtr] != '#'
+                        //此字元是會留下的字元
+                        break;
+                    }
+                }
+
+                //p
+                while (tPtr >= 0) {
+                    if (tChar[tPtr] == '#') {
+                        //此字元是#
+                        tIgnore++;
+                        tPtr--;
+                    } else if (tIgnore > 0) {
+                        //此字元被#抵銷
+                        tIgnore--;
+                        tPtr--;
+                    } else {
+                        //sIgnore == 0 && sChar[sPtr] != '#'
+                        //此字元是會留下的字元
+                        break;
+                    }
+                }
+
+                if (sPtr < 0 && tPtr < 0) {
+                    break;
+                }
+                if (sChar[sPtr] != tChar[tPtr]) {
+                    System.out.print(sChar[sPtr] + " xxxx " + tChar[tPtr]);
+                    return false;
+                } else {
+                    System.out.print(sChar[sPtr] + " ");
+                }
+                sPtr--;
+                tPtr--;
+            }
+            return true;
+        }
+
+        public boolean BF(String s, String t) {
             return build(s).equals(build(t));
         }
 
