@@ -71,14 +71,12 @@ public class P844_BackspaceStringCompare {
                     }
                 }
 
-                if (sPtr < 0 && tPtr < 0) {
-                    break;
-                }
-                if (sChar[sPtr] != tChar[tPtr]) {
-                    System.out.print(sChar[sPtr] + " xxxx " + tChar[tPtr]);
+                //如果ptr沒有>0 後面取值會index out of boud fail
+                if (sPtr > 0 && tPtr > 0 && sChar[sPtr] != tChar[tPtr]) {
+                    System.out.print(sChar[sPtr] + " != " + tChar[tPtr]);
                     return false;
                 } else {
-                    System.out.print(sChar[sPtr] + " ");
+                    System.out.println(sPtr + " " + tPtr + " ");
                 }
                 sPtr--;
                 tPtr--;
