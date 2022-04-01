@@ -19,7 +19,7 @@ public class P844_BackspaceStringCompare {
 
         /**
          * 雙指標法
-         * 從後面往前走, 如果遇到#之後的字要忽略掉
+         * s & t 從後面往前走, 如果遇到#之後的字要忽略掉
          * 直到確定這個字, 是最後留下的字
          * 比較s和t
          *
@@ -35,8 +35,8 @@ public class P844_BackspaceStringCompare {
             int sIgnore = 0;
             int tIgnore = 0;
 
-
-            while (sPtr > 0 && tPtr > 0) {
+            //有可能一個跑完一個還沒完跑完
+            while (sPtr >= 0 || tPtr >= 0) {
                 //s
                 while (sPtr >= 0) {
                     if (sChar[sPtr] == '#') {
@@ -71,16 +71,27 @@ public class P844_BackspaceStringCompare {
                     }
                 }
 
-                //如果ptr沒有>0 後面取值會index out of boud fail
-                if (sPtr > 0 && tPtr > 0 && sChar[sPtr] != tChar[tPtr]) {
-                    System.out.print(sChar[sPtr] + " != " + tChar[tPtr]);
+                //如果ptr沒有>=0 後面取值會index out of boud fail
+                if (sPtr >= 0 && tPtr >= 0 && sChar[sPtr] != tChar[tPtr]) {//                    System.out.println(sChar[sPtr] + " != " + tChar[tPtr]);
                     return false;
-                } else {
-                    System.out.println(sPtr + " " + tPtr + " ");
                 }
+
+//                if(sPtr >= 0 && tPtr >= 0) {
+//                    System.out.println(sChar[sPtr] + " == " + tChar[tPtr]+" / "+sPtr+ "  " +tPtr);
+//                } else {
+//                    System.out.println(sPtr+ "  " +tPtr);
+//                }
+                //有可能一個跑完一個還沒完跑完
+                if ((sPtr >= 0 && tPtr < 0) || (tPtr >= 0 && sPtr < 0)) {
+//                    System.out.println("1 string is empty");
+                    return false;
+                }
+
                 sPtr--;
                 tPtr--;
+
             }
+
             return true;
         }
 

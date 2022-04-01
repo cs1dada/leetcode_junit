@@ -17,8 +17,8 @@ class P844_BackspaceStringCompareTest {
     void backspaceCompare() {
         String s = "ab#c";
         String t = "ad#c";
-//        assertEquals(true,
-//                solution.backspaceCompare(s,t));
+        assertEquals(true,
+                solution.backspaceCompare(s,t));
         assertEquals(true,
                 solution.backspaceCompare("ab##","c#d#"));
         assertEquals(false,
@@ -27,6 +27,10 @@ class P844_BackspaceStringCompareTest {
         assertEquals(true,
                 solution.backspaceCompare("a##c","#a#c"));
 
+        assertEquals(false,
+                solution.backspaceCompare("bxj##tw","bxj###tw"));
 
+        assertEquals(false,
+                solution.backspaceCompare("bbbextm","bbb#extm"));
     }
 }
