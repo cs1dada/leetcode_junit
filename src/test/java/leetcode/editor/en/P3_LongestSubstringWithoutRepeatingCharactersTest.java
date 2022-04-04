@@ -15,14 +15,16 @@ class P3_LongestSubstringWithoutRepeatingCharactersTest {
     }
 
     @Test
-    void testTrap() {
-        String s = "abcabcbb";
+    void test() {
+
         assertEquals(3,
                 solution.lengthOfLongestSubstring("abcabcbb"));
         assertEquals(1,
                 solution.lengthOfLongestSubstring("bbbbb"));
         assertEquals(3,
                 solution.lengthOfLongestSubstring("pwwkew"));
+        assertEquals(1,
+                solution.lengthOfLongestSubstring("aa"));
 
     }
 }
