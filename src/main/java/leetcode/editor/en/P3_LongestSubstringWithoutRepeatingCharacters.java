@@ -12,17 +12,57 @@ public class P3_LongestSubstringWithoutRepeatingCharacters {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         /**
          * sliding window
          * 原本bf重複走太多地方,其實只要用sliding window就可以
-         * 只要s[j]重複了i就往前縮
-         * time O(2n) = O(n)
+         * 只要s[right]重複了,left就往前縮 => 太慢了!
+         * 只要s[right]重複了, left可以直接縮到上一個s[right]的位置+1
+         * time O(n)
          * space O(k)
          *
          * @param s
          * @return
          */
         public int lengthOfLongestSubstring(String s) {
+            int length = s.length();
+
+            int max = 0;
+            // 如果是int[] hasChar, 取沒有初始化的位置, val=0.
+            // 但是Integer[] hasChar, 取沒有初始化的位置, val=null
+            Integer[] hashChar = new Integer[128];
+            int left = 0;
+            int right = 0;
+
+            while (right < length) {
+                Integer index = hashChar[s.charAt(right)];
+//                System.out.println("char: "+s.charAt(right)+" right: "+right+" left: "+left+" index: "+index);
+                //只要s[right]重複了, left可以直接縮到上一個s[right]的位置+1
+                if (index != null && index >= left) {
+                    //index>=left, 避免index指到已經不在sw的地方
+                    left = index + 1;
+                }
+                //把right字的index放到sw
+                hashChar[s.charAt(right)] = right;
+                max = Math.max(max, right - left + 1);
+                //沒有重複字, sw 往右移動
+                right++;
+            }
+
+            return max;
+        }
+
+        /**
+         * sliding window
+         * 原本bf重複走太多地方,其實只要用sliding window就可以
+         * 只要s[right]重複了,left就往前縮
+         * time O(2n) = O(n)
+         * space O(k)
+         *
+         * @param s
+         * @return
+         */
+        public int lengthOfLongestSubstring_opt1(String s) {
             int length = s.length();
 
             int max = 0;
@@ -43,7 +83,7 @@ public class P3_LongestSubstringWithoutRepeatingCharacters {
                 }
                 max = Math.max(max, right - left + 1);
                 //沒有重複字, sw 往右移動
-                right ++;
+                right++;
             }
 
             return max;
@@ -58,7 +98,7 @@ public class P3_LongestSubstringWithoutRepeatingCharacters {
          * @param s
          * @return
          */
-        public int bf(String s) {
+        public int lengthOfLongestSubstring_bf(String s) {
             int max = 0;
             int length = s.length();
 

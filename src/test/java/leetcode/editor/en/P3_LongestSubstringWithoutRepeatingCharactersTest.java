@@ -16,7 +16,8 @@ class P3_LongestSubstringWithoutRepeatingCharactersTest {
 
     @Test
     void test() {
-
+        assertEquals(2,
+                solution.lengthOfLongestSubstring("abba"));
         assertEquals(3,
                 solution.lengthOfLongestSubstring("abcabcbb"));
         assertEquals(1,
@@ -25,6 +26,8 @@ class P3_LongestSubstringWithoutRepeatingCharactersTest {
                 solution.lengthOfLongestSubstring("pwwkew"));
         assertEquals(1,
                 solution.lengthOfLongestSubstring("aa"));
+        assertEquals(2,
+                solution.lengthOfLongestSubstring("au"));
 
     }
 }
