@@ -38,6 +38,12 @@ public class P125_ValidPalindrome {
             return true;
         }
 
+        /**
+         * time O(n)
+         * space O(1)
+         * @param s
+         * @return
+         */
         public boolean isPalindrome_opt(String s) {
 
             int length = s.length();
@@ -45,15 +51,17 @@ public class P125_ValidPalindrome {
             int right = length - 1;
 
             while (left < right) {
+                //左跑到真正要比較的字
                 while ((!Character.isLetterOrDigit(s.charAt(left)) ) && left < right) {
                     left++;
                 }
+                //右跑到真正要比較的字
                 while ((!Character.isLetterOrDigit(s.charAt(right)) ) && left < right) {
                     right--;
                 }
 
 //                System.out.println(s.charAt(left) + "\t" + s.charAt(right));
-                //compare
+                //compare 比較左右, 如果一樣繼續往後比
                 if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
                     return false;
                 } else {
