@@ -13,8 +13,56 @@ public class P125_ValidPalindrome {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isPalindrome(String s) {
-            return true;
+            if (s.isEmpty()) {
+                return true;
+            }
+            int head = 0, tail = s.length() - 1;
+            char cHead, cTail;
+            while(head <= tail) {
+                cHead = s.charAt(head);
+                cTail = s.charAt(tail);
+                if (!Character.isLetterOrDigit(cHead)) {
+                    head++;
+                } else if(!Character.isLetterOrDigit(cTail)) {
+                    tail--;
+                } else {
+//                    System.out.println(s.charAt(head) + "\t" + s.charAt(tail));
+                    if (Character.toLowerCase(cHead) != Character.toLowerCase(cTail)) {
+                        return false;
+                    }
+                    head++;
+                    tail--;
+                }
+            }
 
+            return true;
+        }
+
+        public boolean isPalindrome_opt(String s) {
+
+            int length = s.length();
+            int left = 0;
+            int right = length - 1;
+
+            while (left < right) {
+                while ((!Character.isLetterOrDigit(s.charAt(left)) ) && left < right) {
+                    left++;
+                }
+                while ((!Character.isLetterOrDigit(s.charAt(right)) ) && left < right) {
+                    right--;
+                }
+
+//                System.out.println(s.charAt(left) + "\t" + s.charAt(right));
+                //compare
+                if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                    return false;
+                } else {
+                    left++;
+                    right--;
+                }
+            }
+
+            return true;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
