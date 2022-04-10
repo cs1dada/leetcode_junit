@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class P1_TwoSum {
+class P1_TwoSumTest {
 
-    private Solution solution;
+    private P1_TwoSum.Solution solution;
 
     @BeforeEach
     void setUp() {
-        solution = new Solution();
+        solution = new P1_TwoSum().new Solution();
     }
 
     @Test

@@ -6,13 +6,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-class P206_ReverseLinkedListTest {
-    P206_ReverseLinkedList.Solution solution;
+import static org.junit.jupiter.api.Assertions.*;
 
+class P92_ReverseLinkedListIITest {
+
+    P92_ReverseLinkedListII.Solution solution;
 
     @BeforeEach
     void setUp() {
-        solution = new P206_ReverseLinkedList().new Solution();
+        solution = new P92_ReverseLinkedListII().new Solution();
     }
 
     @Test
@@ -30,14 +32,6 @@ class P206_ReverseLinkedListTest {
         // 1 <- 2 <- 3 <- 4 <- 5
 
         System.out.println(Arrays.toString(new ListNode().printList(node1,5)));
-        System.out.println(Arrays.toString(new ListNode().printList(solution.reverseList(node1),5)));
-
-        ListNode node1node = new ListNode(1);
-        System.out.println(Arrays.toString(new ListNode().printList(node1node,1)));
-        System.out.println(Arrays.toString(new ListNode().printList(solution.reverseList(node1node),1)));
-
-        System.out.println(Arrays.toString(new ListNode().printList(null,0)));
-        System.out.println(Arrays.toString(new ListNode().printList(solution.reverseList(null),0)));
 
 
 

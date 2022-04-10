@@ -1,4 +1,4 @@
-package leetcode.editor.en;
+package leetcode.editor.en.Arrays;
 
 // P1_TwoSum
 
