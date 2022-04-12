@@ -21,6 +21,8 @@ class Node {
     public Node next;
     public Node child;
 };
+https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
+
 */
 
 class Solution {
