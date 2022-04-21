@@ -37,6 +37,96 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
          *  1 -> 2 -> 3 -> 7 -> 8 -> 11 -> 12 -> 9 -> 10 -> 4 -> 5 -> 6 -> null
          */
         public Node flatten(Node head) {
+            recur(head);
+            return  head;
+        }
+
+        public Node recur(Node head) {
+            Node curr = head;
+            Node next = null;
+            Node prev = null;
+            Node child = null;
+
+            if (curr == null)
+                return  head;
+
+            while (curr != null) {
+                prev = curr;
+                //先找到有child的node 或是 找到尾巴
+                if (curr.child == null) {
+                    curr = curr.next;
+                    continue;
+                }
+
+                //有child的node
+                //暫存next
+                next = curr.next;
+                //暫存child
+                child = curr.child;
+                //curr改指到child
+                curr.next = child;
+                child.prev = curr;
+                curr.child = null;
+
+                //找到child list的尾巴
+                Node childTail = flatten(child);
+
+                //child list的尾巴 指到 暫存next
+                if(next != null) {
+                    childTail.next = next;
+                    next.prev =childTail;
+                }
+                curr = child;
+
+            }
+
+            return prev;
+        }
+
+        public Node flatten_iterative(Node head) {
+            Node curr = head;
+            Node next = null;
+            Node child = null;
+
+            if (curr == null)
+                return  head;
+
+            while (curr != null) {
+                //先找到有child的node
+                if (curr.child == null) {
+                    curr = curr.next;
+                    continue;
+                }
+
+                //有child的node
+                //暫存next
+                next = curr.next;
+                //暫存child
+                child = curr.child;
+                //curr改指到child
+                curr.next = child;
+                child.prev = curr;
+                curr.child = null;
+
+                //找到child list的尾巴
+                curr = child;
+                while (curr.next !=null) {
+                    curr = curr.next;
+                }
+                //child list的尾巴 指到 暫存next
+                if(next != null) {
+                    curr.next = next;
+                    next.prev =curr;
+                }
+                curr = child;
+
+            }
+
+            return head;
+
+        }
+
+        public Node flatten_bf(Node head) {
             Node curr = head;
             Node next = null;
             Node child = null;
@@ -73,11 +163,13 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
 
             }
 
-            flatten(child);
+            flatten_bf(child);
 
             return head;
 
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
