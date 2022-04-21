@@ -5,14 +5,14 @@ package leetcode.editor.en;
 import leetcode.editor.en.LinkList.Node;
 
 public class P430_FlattenAMultilevelDoublyLinkedList {
-      
-      public static void main(String[] args) {
-      
-           Solution solution = new P430_FlattenAMultilevelDoublyLinkedList().new Solution();
-           
-      }
-      
-      //leetcode submit region begin(Prohibit modification and deletion)
+
+    public static void main(String[] args) {
+
+        Solution solution = new P430_FlattenAMultilevelDoublyLinkedList().new Solution();
+
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
 /*
 // Definition for a Node.
 class Node {
@@ -25,13 +25,61 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
 
 */
 
-class Solution {
-    public Node flatten(Node head) {
-        return head;
-        
+    class Solution {
+
+        /**
+         *  1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null
+         *            |
+         *            7 -> 8 -> 9 -> 10 -> null
+         *                 |
+         *                 11 -> 12 -> null
+         *
+         *  1 -> 2 -> 3 -> 7 -> 8 -> 11 -> 12 -> 9 -> 10 -> 4 -> 5 -> 6 -> null
+         */
+        public Node flatten(Node head) {
+            Node curr = head;
+            Node next = null;
+            Node child = null;
+
+            //先找到有child的node
+            while (curr != null && curr.child == null) {
+                curr = curr.next;
+            }
+
+            if (curr == null) {
+                return head;
+            } //有child的node
+            else {
+
+                //暫存next
+                next = curr.next;
+                //暫存child
+                child = curr.child;
+                //curr改指到child
+                curr.next = child;
+                child.prev = curr;
+                curr.child = null;
+
+                //找到child list的尾巴
+                curr = child;
+                while (curr != null && curr.next !=null) {
+                    curr = curr.next;
+                }
+                //child list的尾巴 指到 暫存next
+                if(next != null) {
+                    curr.next = next;
+                    next.prev =curr;
+                }
+
+            }
+
+            flatten(child);
+
+            return head;
+
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-      
-  }
+
+}
