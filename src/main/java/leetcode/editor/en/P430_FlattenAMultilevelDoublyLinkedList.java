@@ -41,6 +41,11 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
             return  head;
         }
 
+        /**
+         * recsive 在找child list的尾巴時候會進入循環~(flatten之後的點+找child list的尾巴)
+         * @param head
+         * @return
+         */
         public Node recur(Node head) {
             Node curr = head;
             Node next = null;
@@ -51,6 +56,7 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
                 return  head;
 
             while (curr != null) {
+                //紀錄最後一個不是null的點
                 prev = curr;
                 //先找到有child的node 或是 找到尾巴
                 if (curr.child == null) {
@@ -69,7 +75,7 @@ https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
                 curr.child = null;
 
                 //找到child list的尾巴
-                Node childTail = flatten(child);
+                Node childTail = recur(child);
 
                 //child list的尾巴 指到 暫存next
                 if(next != null) {
