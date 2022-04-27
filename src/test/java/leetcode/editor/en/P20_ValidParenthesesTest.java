@@ -15,7 +15,10 @@ class P20_ValidParenthesesTest {
 
     @Test
     void test() {
-        String s = "(";
+        String s = "]";
+        assertEquals(false, solution.isValid(s));
+
+        s = "(";
         assertEquals(false, solution.isValid(s));
 
         s = "()[]{}";

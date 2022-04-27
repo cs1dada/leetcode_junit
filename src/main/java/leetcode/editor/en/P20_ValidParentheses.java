@@ -4,6 +4,7 @@ package leetcode.editor.en;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class P20_ValidParentheses {
 
@@ -19,6 +20,30 @@ public class P20_ValidParentheses {
         //"()[]{}"
         //"()[]{[()()]}"
         public boolean isValid(String s) {
+            Stack<Character> stack = new Stack<>();
+
+            for (char cur : s.toCharArray()) {
+                //左括號push
+                if (cur == '(') {
+                    stack.push(')');
+                } else if (cur == '{') {
+                    stack.push('}');
+                } else if (cur == '[') {
+                    stack.push(']');
+                } else {
+                    //stack peek比較 == 右掛號,如果Stack為空直接false
+                    if (!stack.empty() && cur == stack.peek()) {
+                        stack.pop();
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            return stack.empty() ? true : false;
+        }
+
+        public boolean isValid_bf(String s) {
             int l = s.length();
             int stackTop = 0;
             List<String> stack = new ArrayList<>();
