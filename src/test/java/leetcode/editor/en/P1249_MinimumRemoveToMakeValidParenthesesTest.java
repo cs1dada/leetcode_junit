@@ -15,24 +15,32 @@ class P1249_MinimumRemoveToMakeValidParenthesesTest {
         solution = new P1249_MinimumRemoveToMakeValidParentheses().new Solution();
     }
 
+    /**
+     * Input: s = "lee(t(c)o)de)"
+     * Output: "lee(t(c)o)de"
+     * Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+     *
+     * Input: s = "a)b(c)d"
+     * Output: "ab(c)d"
+     *
+     * Input: s = "))(("
+     * Output: ""
+     * Explanation: An empty string is also valid.
+     *
+     * Input: s = "(("
+     */
     @Test
     void test() {
-        /**
-         * Input: s = "lee(t(c)o)de)"
-         * Output: "lee(t(c)o)de"
-         * Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
-         *
-         * Input: s = "a)b(c)d"
-         * Output: "ab(c)d"
-         *
-         * Input: s = "))(("
-         * Output: ""
-         * Explanation: An empty string is also valid.
-         *
-         */
+        assertEquals("a(b(c)d)",
+                solution.minRemoveToMakeValid("(a(b(c)d)"));
+        assertEquals("",
+                solution.minRemoveToMakeValid(""));
         assertEquals("lee(t(c)o)de",
                 solution.minRemoveToMakeValid("lee(t(c)o)de)"));
-
+        assertEquals("",
+                solution.minRemoveToMakeValid("(("));
+        assertEquals("",
+                solution.minRemoveToMakeValid("))"));
 
     }
 }
