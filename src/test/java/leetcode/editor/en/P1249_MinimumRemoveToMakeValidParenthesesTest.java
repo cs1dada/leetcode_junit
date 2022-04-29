@@ -31,6 +31,8 @@ class P1249_MinimumRemoveToMakeValidParenthesesTest {
      */
     @Test
     void test() {
+        assertEquals("w",
+                solution.minRemoveToMakeValid(")())()(())))()())))(w"));
         assertEquals("a(b(c)d)",
                 solution.minRemoveToMakeValid("(a(b(c)d)"));
         assertEquals("",
