@@ -17,10 +17,14 @@ public class P1249_MinimumRemoveToMakeValidParentheses {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+        /**
+         * 技巧是存入parentheses index 到stack
+         *
+         * @param s
+         * @return
+         */
         public String minRemoveToMakeValid(String s) {
-
             Stack<Integer> stack = new Stack<>();
-            String validStr = "";
             for (int i = 0; i < s.length(); i++) {
                 if (Character.isAlphabetic(s.charAt(i)))
                     continue;
@@ -28,34 +32,26 @@ public class P1249_MinimumRemoveToMakeValidParentheses {
                 if (s.charAt(i) == '(') {
                     //push ( index
                     stack.push(i);
-                } else if (s.charAt(i) == ')') {
-                    if (!stack.empty() && s.charAt(stack.peek()) == '(') {
+                } else {
+                    if (!stack.isEmpty() && s.charAt(stack.peek()) == '(') {
                         //valid pair
                         stack.pop();
                     } else {
-                        // () => "", stack.empty(), )不存入stack
+                        // 如果沒有valid pair, push ')' index
                         stack.push(i);
                     }
                 }
             }
 
+            //如果使用單純的String去處理很大量的字會tle, 改用stringBuilder
+            StringBuilder result = new StringBuilder();
+            HashSet<Integer> set = new HashSet<>(stack);
+            for (int i = 0; i < s.length(); i++)
+                if (!set.contains(i))
+                    result.append(s.charAt(i));
 
-            //stack != empty, 去除所有 ( , invalidParenthesesIndex
-            HashSet<Integer> invalidP = new HashSet<>(stack);
-            for (int i = 0; i < s.length(); i++) {
-                if (Character.isAlphabetic(s.charAt(i))) {
-                    validStr += s.charAt(i);
-                } else {
-                    //合法 parentheses
-                    if (!invalidP.contains(i)) {
-                        validStr += s.charAt(i);
-                    }
-                }
+            return result.toString();
 
-            }
-            
-            System.out.println(validStr);
-            return validStr;
 
         }
 
