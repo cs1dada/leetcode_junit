@@ -19,7 +19,7 @@ public class P1249_MinimumRemoveToMakeValidParentheses {
 
         /**
          * 技巧是存入parentheses index 到stack
-         *
+         * https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
          * @param s
          * @return
          */
