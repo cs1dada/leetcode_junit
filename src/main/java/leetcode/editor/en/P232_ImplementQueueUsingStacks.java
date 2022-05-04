@@ -2,6 +2,10 @@ package leetcode.editor.en;
 
 // P232_ImplementQueueUsingStacks
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class P232_ImplementQueueUsingStacks {
 
     public static void main(String[] args) {
@@ -11,26 +15,54 @@ public class P232_ImplementQueueUsingStacks {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
     class MyQueue {
+        Stack<Integer> s1;
+        Stack<Integer> s2;
+        List<Integer> stack;
 
         public MyQueue() {
-
+            stack = new ArrayList<>();
         }
 
         public void push(int x) {
-
+            stack.add(x);
         }
 
         public int pop() {
-            return 0;
+            return stack.remove(0);
         }
 
         public int peek() {
-            return 0;
+            return stack.get(0);
         }
 
         public boolean empty() {
-            return true;
+            return stack.isEmpty();
+        }
+    }
+
+    class MyQueue_bf {
+        List<Integer> stack;
+
+        public MyQueue_bf() {
+            stack = new ArrayList<>();
+        }
+
+        public void push(int x) {
+            stack.add(x);
+        }
+
+        public int pop() {
+            return stack.remove(0);
+        }
+
+        public int peek() {
+            return stack.get(0);
+        }
+
+        public boolean empty() {
+            return stack.isEmpty();
         }
     }
 
