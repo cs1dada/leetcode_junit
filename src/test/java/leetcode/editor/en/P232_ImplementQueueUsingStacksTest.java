@@ -23,5 +23,9 @@ class P232_ImplementQueueUsingStacksTest {
         assertEquals(1, myQueue.pop());
         assertEquals(false, myQueue.empty());
 
+        //[1, 3, 4, 2(top)] //stack push
+        //[2, 4, 3, 1(top)] //stack pop
+        //[(front)1, 3, 4, 2] //queue
+
     }
 }

@@ -19,26 +19,39 @@ public class P232_ImplementQueueUsingStacks {
     class MyQueue {
         Stack<Integer> s1;
         Stack<Integer> s2;
-        List<Integer> stack;
 
         public MyQueue() {
-            stack = new ArrayList<>();
+            s1 = new Stack<>();
+            s2 = new Stack<>();
         }
 
         public void push(int x) {
-            stack.add(x);
+            //push都推到s1
+            while (!s2.isEmpty()) {
+                s1.push(s2.pop());
+            }
+            s1.push(x);
         }
 
         public int pop() {
-            return stack.remove(0);
+            //pop都從s2拿
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.isEmpty() ? null: s2.pop();
         }
 
         public int peek() {
-            return stack.get(0);
+            //peek都從s2拿
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.isEmpty() ? null: s2.peek();
         }
 
         public boolean empty() {
-            return stack.isEmpty();
+            //確認s1 && s2都空才是空
+            return s1.isEmpty() && s2.isEmpty();
         }
     }
 
