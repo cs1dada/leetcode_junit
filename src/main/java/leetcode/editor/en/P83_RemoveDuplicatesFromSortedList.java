@@ -26,8 +26,27 @@ public class P83_RemoveDuplicatesFromSortedList {
      */
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
+            if (head == null)
+                return null;
+            if (head.next == null)
+                return head;
 
-            return null;
+            ListNode ptr = head;
+            ListNode next = ptr.next;
+
+            while (ptr != null) {
+                //如果下一個點重複, 跳到下個不重複點
+                while (next != null && next.val == ptr.val) {
+                    next = next.next;
+                }
+                //ptr 跟下個不重複點對接
+                ptr.next = next;
+
+                //ptr 往後走
+                ptr = ptr.next;
+            }
+
+            return head;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
