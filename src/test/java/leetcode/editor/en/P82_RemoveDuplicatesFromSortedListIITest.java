@@ -28,14 +28,38 @@ class P82_RemoveDuplicatesFromSortedListIITest {
         node = case1();
         ListNode  result = solution.deleteDuplicates(node);
 
-        System.out.println(Arrays.toString(new ListNode().printList(result,5)));
+        System.out.println(Arrays.toString(new ListNode().printList(result,10)));
 
     }
     ListNode case1() {
-        // 1 -> 1 -> 1 -> 2 -> 3
+
+
+        // 1 -> 2 -> 2
+
+        ListNode a = new ListNode(1);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(2);
+
+
+        a.next = b;
+        b.next = c;
+
+        return a;
+    }
+
+
+
+    ListNode case11() {
+
+
 // 1 -> 1 -> 2 -> 2 -> 3 -> 4
 
+// 1 -> 1 -> 2 -> 2 -> 3 -> 4 -> 4 -> 5
+
 // 1 -> 2 -> 2 -> 3 -> 4 -> 4
+
+// 1 -> 2 -> 3 -> 4 -> 4 -> 5
+
         ListNode a = new ListNode(1);
         ListNode b = new ListNode(1);
         ListNode c = new ListNode(2);
