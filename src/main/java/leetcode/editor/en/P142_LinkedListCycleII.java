@@ -42,10 +42,10 @@ public class P142_LinkedListCycleII {
                     //         -  c  -
                     // 2(a+b) = a+2b+c
                     // a = c
-                    // slow從p往q走的距離(c) 跟 slow2從head往q走的距離(a) 一樣(速度也一樣) ~~~
+                    // slow從p往q(步寬1), 走的距離(c) 跟 slow2從head往q走(步寬1)的距離(a) 一樣(速度也一樣) ~~~
                     ListNode oneStep2 = head;
                     while (oneStep != oneStep2) {
-                        System.out.println(oneStep2.val + " " + oneStep.val);
+                        //System.out.println(oneStep2.val + " " + oneStep.val);
                         oneStep = oneStep.next;
                         oneStep2 = oneStep2.next;
                     }
