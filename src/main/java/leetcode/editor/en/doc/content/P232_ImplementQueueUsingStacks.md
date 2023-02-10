@@ -47,3 +47,85 @@ myQueue.empty(); // return false
 <p>&nbsp;</p>
 <p><strong>Follow-up:</strong> Can you implement the queue such that each operation is <strong><a href="https://en.wikipedia.org/wiki/Amortized_analysis" target="_blank">amortized</a></strong> <code>O(1)</code> time complexity? In other words, performing <code>n</code> operations will take overall <code>O(n)</code> time even if one of those operations may take longer.</p>
 <div><div>Related Topics</div><div><li>Stack</li><li>Design</li><li>Queue</li></div></div><br><div><li>👍 3276</li><li>👎 223</li></div>
+
+<div id="labuladong"><hr>
+
+**通知：[数据结构精品课](https://aep.h5.xeknow.com/s/1XJHEO) 已更新到 V2.1，[手把手刷二叉树系列课程](https://aep.xet.tech/s/3YGcq3) 上线。**
+
+
+
+<p><strong><a href="https://labuladong.github.io/article?qno=232" target="_blank">⭐️labuladong 题解</a></strong></p>
+<details><summary><strong>labuladong 思路</strong></summary>
+
+## 基本思路
+
+我们使用两个栈 `s1, s2` 就能实现一个队列的功能。
+
+当调用 `push` 让元素入队时，只要把元素压入 `s1` 即可：
+
+![](https://labuladong.gitee.io/pictures/栈队列/3.jpg)
+
+使用 `peek` 或 `pop` 操作队头的元素时，若 `s2` 为空，可以把 `s1` 的所有元素取出再添加进 `s2`，**这时候 `s2` 中元素就是先进先出顺序了**：
+
+![](https://labuladong.gitee.io/pictures/栈队列/4.jpg)
+
+**详细题解：[队列实现栈以及栈实现队列](https://labuladong.github.io/article/fname.html?fname=队列实现栈栈实现队列)**
+
+**标签：[数据结构](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzAxODQxMDM0Mw==&action=getalbum&album_id=1318892385270808576)，[栈](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzAxODQxMDM0Mw==&action=getalbum&album_id=2121993002939219969)，[队列](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzAxODQxMDM0Mw==&action=getalbum&album_id=2121993002939219969)**
+
+## 解法代码
+
+```java
+class MyQueue {
+    private Stack<Integer> s1, s2;
+
+    public MyQueue() {
+        s1 = new Stack<>();
+        s2 = new Stack<>();
+    }
+
+    /**
+     * 添加元素到队尾
+     */
+    public void push(int x) {
+        s1.push(x);
+    }
+
+    /**
+     * 删除队头的元素并返回
+     */
+    public int pop() {
+        // 先调用 peek 保证 s2 非空
+        peek();
+        return s2.pop();
+    }
+
+    /**
+     * 返回队头元素
+     */
+    public int peek() {
+        if (s2.isEmpty())
+            // 把 s1 元素压入 s2
+            while (!s1.isEmpty())
+                s2.push(s1.pop());
+        return s2.peek();
+    }
+
+    /**
+     * 判断队列是否为空
+     */
+    public boolean empty() {
+        return s1.isEmpty() && s2.isEmpty();
+    }
+}
+```
+
+**类似题目**：
+  - [225. 用队列实现栈 🟢](/problems/implement-stack-using-queues)
+  - [剑指 Offer 09. 用两个栈实现队列 🟢](/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof)
+
+</details>
+</div>
+
+
+
