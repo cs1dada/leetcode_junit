@@ -2,7 +2,9 @@ package leetcode.editor.en;
 
 // P222_CountCompleteTreeNodes
 
-  public class P222_CountCompleteTreeNodes {
+import javax.swing.tree.TreeNode;
+
+public class P222_CountCompleteTreeNodes {
       
       public static void main(String[] args) {
       
@@ -28,7 +30,7 @@ package leetcode.editor.en;
  */
 class Solution {
     public int countNodes(TreeNode root) {
-        
+        return 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
